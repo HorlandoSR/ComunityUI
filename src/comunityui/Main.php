@@ -44,7 +44,7 @@ class Main extends PluginBase implements Listener{
         return true;
     }
     
-    public function openMyForm($sender){
+    public function openMyForm($player){
         $form = $this->getServer()->getPluginManager()->getPlugin("FormAPI")->createSimpleForm(function (Player $player, int $data = null){
             $result = $data;
             if($result == null){
@@ -52,15 +52,15 @@ class Main extends PluginBase implements Listener{
             }
             switch($result){
                 case 0:
-                    $sender->addTitle("§cGOODBYE", "ComunityUI");
+                    $player->addTitle("§cGOODBYE", "ComunityUI");
                 break;
 
                 case 1:
-                    $sender->sendMessage($this->getConfig()->get("MSG-WA"));
+                    $player->sendMessage($this->getConfig()->get("MSG-WA"));
                 break;
 
                 case 2:
-                    $sender->sendMessage($this->getConfig()->get("MSG-DC"));
+                    $player->sendMessage($this->getConfig()->get("MSG-DC"));
                 break;
 
             }
@@ -70,7 +70,7 @@ class Main extends PluginBase implements Listener{
         $form->addButton("§c§lExit", 0, "textures/ui/cancel");
         $form->addButton($this->getConfig()->get("BTN-WA"), 0, "textures/items/feather");
         $form->addButton($this->getConfig()->get("BTN-DC"), 0, "textures/items/book_writable");
-        $form->sendToPlayer($sender);
+        $form->sendToPlayer($player);
         return $form;
     }
 }
